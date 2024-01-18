@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>WebView Interaction</title>
+    <script>
+        function sendMessageToReactNative(message) {
+            window.ReactNativeWebView.postMessage(JSON.stringify(message));
+        }
+
+        function openCamera() {
+            sendMessageToReactNative({ type: 'openCamera' });
+        }
+
+        function openGallery() {
+            sendMessageToReactNative({ type: 'openGallery' });
+        }
+    </script>
+</head>
+<body>
+<button onclick="openCamera()">Open Camera</button>
+<button onclick="openGallery()">Open Gallery</button>
+<img id="selected-image" style="width: 100%; margin-top: 20px;" />
+</body>
+</html>
+
