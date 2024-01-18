@@ -62,7 +62,6 @@
 
     function displayImages(base64Images) {
         const grid = document.getElementById('image-grid');
-        grid.innerHTML = ''; // 기존 이미지 제거
         base64Images.forEach(image => {
             const img = document.createElement('img');
             img.src = image;
