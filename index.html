@@ -26,12 +26,25 @@
             width: 100%;
             margin-top: 20px;
         }
+
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .image-grid img {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 1 / 1;
+        }
     </style>
 </head>
 <body>
 <button class="camera" onclick="openCamera()">Open Camera</button>
 <button class="gallery" onclick="openGallery()">Open Gallery</button>
-<img id="selected-image" style="width: 100%; margin-top: 20px;" />
+<div class="image-grid" id="image-grid"></div>
 <script>
     function sendMessageToReactNative(message) {
         window.ReactNativeWebView.postMessage(JSON.stringify(message));
@@ -45,6 +58,16 @@
     function openGallery() {
         console.log('open gallery')
         sendMessageToReactNative({ type: 'openGallery' });
+    }
+
+    function displayImages(base64Images) {
+        const grid = document.getElementById('image-grid');
+        grid.innerHTML = ''; // 기존 이미지 제거
+        base64Images.forEach(image => {
+            const img = document.createElement('img');
+            img.src = image;
+            grid.appendChild(img);
+        });
     }
 </script>
 </body>
